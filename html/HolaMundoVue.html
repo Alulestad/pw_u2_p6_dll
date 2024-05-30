@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue.js</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    
-</head>
+  </head>
 
-<body>
-    
+  <body>
     <!-- Vue tendrá control absoluto  de toda esta sección -->
-    <div id="myApp"> <!-- estoy diciendo q todo esto es mi app -->
-        <header></header>
-        <nav></nav>
-        <section></section>
-        <footer></footer>
+    <div id="myApp">
+      <!-- estoy diciendo q todo esto es mi app -->
+      <header></header>
+      <nav></nav>
+      <section>
+        <!-- Debe estar dentro de la seccion que controla vue.js -->
+        <h1>Hola mundo desde Vue.js</h1>
+        <p>{{1+1}}</p>
+        <p>{{[1,2,3,4,5]}}</p>
+        <p>{{false?'Verdadero':'Falso'}}</p>
+        <p>{{mensaje}}</p>
+        <p>{{this.mensaje}}</p>
+        <!-- standar: no se usa this. -->
+        <p>{{valor}}</p>
+        <button v-on:click="cambiarTexto">Cambiar Texto</button>
+        <!-- en el button tiene poner una 
+        direcctiva cuando haga click -->
+        <button v-on:click="sumar">Sumar</button>
+        <!-- aca ponenos una directiva v-on
+        con un evento click con el método sumar -->
+      </section>
+      <footer></footer>
     </div>
 
-    
+    <p>{{1+1}}</p>
 
-    <script src="../js/app.js"></script> <!-- es una excepción. Se recomienda poner al final -->
-</body>
-
+    <script src="../js/app.js"></script>
+    <!-- es una excepción. Se recomienda poner al final -->
+  </body>
 </html>
