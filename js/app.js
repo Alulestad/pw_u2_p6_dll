@@ -45,6 +45,8 @@ const app = Vue.createApp({
       valor: 7,
       lista: estudiantes /* mi propiedad reactica
       es lista */,
+      nombre: null,
+      apellido: null,
     };
   },
   methods: {
@@ -58,11 +60,41 @@ const app = Vue.createApp({
       this.valor = this.valor + 100;
     },
     agregar() {
+      console.log(this.nombre);
+      console.log(this.apellido);
       const nuevo = {
-        nombre: "daniel",
-        apellido: "Llumiquinga",
+        nombre: this.nombre,
+        apellido: this.apellido,
       };
       this.lista.unshift(nuevo);
+      this.resetear();
+    },
+    resetear() {
+      this.nombre = null;
+      this.apellido = null;
+    },
+    /* agregar2(event) {
+      console.log(event);
+
+      if (event.charCode !== 13) return;
+
+      this.agregar();
+    }, */
+    /* agregar2({ charCode }) {
+      console.log(charCode);
+      if (charCode !== 13) return;
+
+      this.agregar();
+    }, */
+    /* Lo anterior era ineficiente */
+    agregar2({ charCode }) {
+      console.log(charCode);
+
+      if (charCode !== 13) return;
+
+      if (this.nombre !== null && this.apellido !== null) {
+        this.agregar();
+      }
     },
   },
 });
