@@ -1,18 +1,20 @@
 <template>
 
-  <Contador> </Contador>
-
+  <img src="./assets/logo.png" alt="NONE">
+  <Contador titulo="Estudiante" /> <!-- [3] -->
+  <Contador titulo="Profesor" />
+  <Contador />
 </template>
 
 <script>
 
-import Contador from "./components/Contador.vue"
+import Contador from "./components/Contador.vue" /* [1] */
 
 
 export default {
   name: 'App',
   components: {
-    Contador
+    Contador /* [2] */
   }
 }
 </script>
