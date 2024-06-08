@@ -1,8 +1,9 @@
 <template>
-  <h2>{{ presentar }}</h2>
-  <!--<p>{{ numero }} 
+  <h2>{{ presentar }} {{ num }}</h2>
+
+  <!-- <p>{{ numero }}
     <sup>2</sup>={{ calcularCuadrado() }}
-  </p> LLAMADA A UN METODO-->
+  </p> --> <!-- LLAMADA A UN METODO -->
   <p>{{ numero }} <sup>2</sup>={{ calcular }}</p>
   <!--LLAMADA A UNA PROPIEDAD COMPUTADA-->
   <div>
@@ -12,7 +13,24 @@
 
 <script>
 export default {
-  props: ["titulo", "propN"],
+  /* props: ["titulo", "num"], */ /* declaracion basica */
+  props: {
+    titulo: String,
+    num: {
+      type: Number,
+      require: true,
+      default: 10,
+      validator(value) {
+        /* toda la programacion  */
+        /* return booleano */
+        return value > 0;
+
+      }
+
+    }
+
+
+  },
   data() {
     return {
       /*prop reactivas*/
@@ -39,6 +57,7 @@ export default {
     disminuir() {
       this.numero--;
     },
+
   },
 
   computed: {
@@ -51,7 +70,8 @@ export default {
       if (this.titulo !== undefined) {
         return this.titulo;
       } else {
-        return this.titulo = "Texto que quiero";
+
+        return "Texto que quiero";
       }
     }
 
