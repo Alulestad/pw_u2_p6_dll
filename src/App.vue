@@ -1,24 +1,81 @@
 <template>
-  <Contador />
+  <Pregunta />
+  <Contador v-bind:num="11+1" />
+  <h1>PK</h1>
+  <Pk v-for="(imagen, indice) in imagenes" :key="indice" :imagen="imagen" :nombre="respuesta[indice]"/>
 </template>
 
 <script>
-
-import Contador from "./components/Pregunta.vue" /* [1] */
-
+import Contador from "./components/Contador.vue"; /* [1] */
+import Pregunta from "./components/Pregunta.vue";
+import Pk from "./components/Pk.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Contador /* [2] */
+    Pregunta /* [2] */,
+    Contador,
+    Pk,
   },
   methods: {
     calcularValor() {
       return 10 + 2;
+    },
+    async consumirAPI() {
+      this.intento++;
 
-    }
+      const imagenesApi = [];
+      const nombresApi = [];
+
+      for (let i = 0; i < this.imagenes.length; i++) {
+        const { answer, image } = await fetch("https://yesno.wtf/api").then((r) => r.json() );
+        imagenesApi.push(image);
+        nombresApi.push(answer);
+      }
+
+      this.imagenes = imagenesApi;
+      this.respuesta = nombresApi;
+
+      let numeroYes = 0;
+
+      for (let i = 0; i < this.respuesta.length; i++) {
+        if (this.respuesta[i] === "yes") {
+          numeroYes++;
+        }
+      }
+      if (numeroYes === 3) {
+        this.puntaje = this.puntaje + 5;
+      } else if (numeroYes === 2) {
+        this.puntaje = this.puntaje + 2;
+      } else if (numeroYes === 1) {
+        this.puntaje = this.puntaje + 1;
+      } else {
+        this.puntaje = this.puntaje;;
+      }
+
+      if (this.intento >= this.maxIntentos || this.puntaje >= 10) {
+        this.juegoTerminado = true;
+        this.juego = false;
+      }
+    },
+  },
+  data () {
+    return {
+      puntaje: 0,
+      intento: 0,
+      respuesta: [],
+      imagenes: [
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg",
+      ],
+      maxIntentos: 6,
+      juegoTerminado: false,
+      juego: true,
+    };
   }
-}
+};
 </script>
 
 <style>

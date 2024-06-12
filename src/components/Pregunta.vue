@@ -9,7 +9,7 @@
         <p>Recuerda terminar la pregunta con el signo de interrogacion (?)</p>
 
         <div>
-            <h2>Voy a pasar de semestre?</h2>
+            <h2>No Voy a pasar de semestre?</h2>
             <h1>SI,NO,......</h1>
 
         </div>

@@ -1,4 +1,5 @@
 <template>
+  
   <h2>{{ presentar }} {{ num }}</h2>
 
   <!-- <p>{{ numero }}
@@ -71,7 +72,7 @@ export default {
         return this.titulo;
       } else {
 
-        return "Texto que quiero";
+        return "Texto que quiero".concat("a");
       }
     }
 
