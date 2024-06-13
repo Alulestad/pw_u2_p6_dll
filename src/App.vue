@@ -1,8 +1,26 @@
 <template>
   <Pregunta />
-  <Contador v-bind:num="11+1" />
-  <h1>PK</h1>
-  <Pk v-for="(imagen, indice) in imagenes" :key="indice" :imagen="imagen" :nombre="respuesta[indice]"/>
+  <Contador v-bind:num="11 + 1" v-if="false" />
+
+  <div class="puchamones" v-if="false">
+    <h1>PK</h1>
+
+    <div class="puntajes">
+      <label> puntaje: {{ puntaje }}</label>
+      <label> Intento: {{ interno }}</label>
+    </div>
+    <div class="opcionesPokemones">
+      <Pk
+        v-for="(imagen, indice) in imagenes"
+        :key="indice"
+        :imagen="imagen"
+        :nombre="respuesta[indice]"
+      />
+    </div>
+    <div class="bottonJugar">
+      <button @click="consumirAPI">Jugar</button>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -28,7 +46,9 @@ export default {
       const nombresApi = [];
 
       for (let i = 0; i < this.imagenes.length; i++) {
-        const { answer, image } = await fetch("https://yesno.wtf/api").then((r) => r.json() );
+        const { answer, image } = await fetch("https://yesno.wtf/api").then(
+          (r) => r.json()
+        );
         imagenesApi.push(image);
         nombresApi.push(answer);
       }
@@ -50,7 +70,7 @@ export default {
       } else if (numeroYes === 1) {
         this.puntaje = this.puntaje + 1;
       } else {
-        this.puntaje = this.puntaje;;
+        this.puntaje = this.puntaje;
       }
 
       if (this.intento >= this.maxIntentos || this.puntaje >= 10) {
@@ -59,7 +79,7 @@ export default {
       }
     },
   },
-  data () {
+  data() {
     return {
       puntaje: 0,
       intento: 0,
@@ -74,7 +94,7 @@ export default {
       juegoTerminado: false,
       juego: true,
     };
-  }
+  },
 };
 </script>
 
