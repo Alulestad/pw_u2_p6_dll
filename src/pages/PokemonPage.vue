@@ -1,6 +1,6 @@
 <template>
   <h1>Selecciona el Pokemon correcto</h1>
-  <PokemonImagen />
+  <PokemonImagen :idPokemon="5" :mostrarPokemon="true" />
   <PokemonOpciones />
 </template>
 
