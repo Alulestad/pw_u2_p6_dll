@@ -1,7 +1,9 @@
 <template>
   <div class="opciones-container">
     <ul>
-      <li v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.name }}</li>
+      <li v-for="pokemon in pokemons" :key="pokemon.id">
+        {{ pokemon.nombre }}
+      </li>
     </ul>
     <!-- order list -->
   </div>

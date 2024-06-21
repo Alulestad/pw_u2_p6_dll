@@ -1,7 +1,11 @@
 <template>
-  <h1>Selecciona el Pokemon correcto</h1>
-  <PokemonImagen :idPokemon="5" :mostrarPokemon="true" />
-  <PokemonOpciones :pokemons="arreglo" />
+  <h1 v-if="!pokemonCorrecto">Por favor espere.......</h1>
+  <div v-else>
+    <h1>Selecciona el Pokemon correcto</h1>
+    <PokemonImagen :idPokemon="pokemonCorrecto.id" :mostrarPokemon="mostrar" />
+    <PokemonOpciones :pokemons="arreglo" />
+  </div>
+  <!-- <div>{{ cargaInicial() }}</div> -->
 </template>
 
 <script>
@@ -16,13 +20,19 @@ export default {
   },
   methods: {
     async cargaInicial() {
-      const vectorInicial = await obtenerPokemonsFachada(4);
+      const vectorInicial = await obtenerPokemonsFachada(5);
       this.arreglo = vectorInicial;
+
+      const indice = Math.floor(Math.random() * 7);
+      this.pokemonCorrecto = this.arreglo[indice];
     },
   },
   data() {
     return {
       arreglo: [],
+      pokemonCorrecto: null /* Esto se puede hacer pero no se recomienda */,
+      /* llamar: this.cargaInicial(), */
+      mostrar: false,
     };
   },
   mounted() {
