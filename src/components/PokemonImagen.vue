@@ -2,7 +2,7 @@
   <div class="pokemon-container">
     <img
       v-show="mostrarPokemon"
-      src="imagenFuente"
+      :src="imagenFuente"
       alt="No se pudo visualizar la imagen"
     />
 
@@ -17,30 +17,28 @@
 
 <script>
 export default {
-  computed:{
-    imagenFuente(){
-      return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.idPokemon}.svg';
-    }
-  
+  computed: {
+    imagenFuente() {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.idPokemon}.svg`;
+    },
   },
   data() {
     return {
       mostrar: true,
-      urlimagen:"",
-      
+      urlimagen: "",
     };
   },
-  props:{
-    idPokemon:{
+  props: {
+    idPokemon: {
       type: Number,
-      required:true,
+      required: true,
     },
-    mostrarPokemon:{
-      type:Boolean,
-      required:true,
-      
-    }
-  }
+    mostrarPokemon: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
+  },
 };
 </script>
 

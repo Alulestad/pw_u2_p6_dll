@@ -1,21 +1,33 @@
 <template>
   <h1>Selecciona el Pokemon correcto</h1>
   <PokemonImagen :idPokemon="5" :mostrarPokemon="true" />
-  <PokemonOpciones />
+  <PokemonOpciones :pokemons="arreglo" />
 </template>
 
 <script>
 import PokemonImagen from "../components/PokemonImagen.vue";
 import PokemonOpciones from "../components/PokemonOpciones.vue";
+import obtenerPokemonsFachada from "../clientes/ClientePokemonAPI"; /* Solo para funciones */
 
 export default {
   components: {
     PokemonImagen,
     PokemonOpciones,
   },
-  data() {
-    return {};
+  methods: {
+    async cargaInicial() {
+      const vectorInicial = await obtenerPokemonsFachada(4);
+      this.arreglo = vectorInicial;
+    },
   },
+  data() {
+    return {
+      arrego: [],
+    };
+  },
+  mounted() {
+    this.cargaInicial();
+  } /* se dispara cuando se incia pa pagina web */,
 };
 </script>
 
