@@ -1,7 +1,21 @@
 <template>
   <div class="opciones-container">
     <ul>
-      <li v-for="pokemon in pokemons" :key="pokemon.id">
+      <li
+        v-for="pokemon in pokemons"
+        :key="pokemon.id"
+        @click="
+          $emit('seleccionPokemon', {
+            ident: pokemon.id,
+            nomb: pokemon.nombre,
+            test: 'Prueba1',
+            test2: test3,
+          })
+        "
+      >
+        <!-- v-on=@ -->
+        <!-- El emit debe enviar al menos un elemento, y usa el nombre, y se usa en eventos -->
+        <!-- Como segundo argumento del emit se puede enviar un dato -->
         {{ pokemon.nombre }}
       </li>
     </ul>
@@ -18,7 +32,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      test3: "Segunda prueba",
+    };
   },
 };
 </script>
