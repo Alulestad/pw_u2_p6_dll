@@ -51,10 +51,16 @@ img {
   height: 200px;
   width: 200px;
   position: absolute; /*solapa los elementos en un solo espacio*/
-  right: 38%;
+  /*right: 38%;*/
   /*que porcentaje tiene de espacio del borde derecho*/
+  margin-left: 50px;
 }
 .pokemon-container {
   height: 200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 </style>
